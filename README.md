@@ -2,7 +2,10 @@
 ![](https://www.alura.com.br/assets/api/share/curso-javascript-polimorfismo.png)
 
 > Aula01
-- Conhecendo o problema do cliente
+- Conhecendo o problema do cliente.
 
 > Aula02
-- Herança
+- Herança.
+
+> Aula03
+- Classes abstratas.
