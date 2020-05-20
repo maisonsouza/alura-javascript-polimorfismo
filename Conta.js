@@ -6,14 +6,20 @@ export class Conta {
     }
 
     sacar(valor) {
-        console.log("Sacando", valor, "reais ... ")
-        if (this._saldo >= valor) {
-            this._saldo -= valor;
+        let taxa = 1;
+        return this._sacar(valor,taxa);
+    }
+
+    _sacar(valor, taxa){
+        const valorSacado = taxa * valor;
+        if (this._saldo >= valorSacado) {
+            this._saldo -= valorSacado;
             console.log("Saque realizado com sucesso");
             console.log("Saldo = R$", this._saldo, "\n");
-            return valor;
+            return valorSacado;
         } else {
             console.log("Saldo em conta insuficiente para o saque\n");
+            return 0;
         }
     }
 
@@ -33,5 +39,9 @@ export class Conta {
         const valorSacado = this.sacar(valor);
         contaDestino.depositar(valorSacado);
         console.log("Transferência efetuada com sucesso");
+    }
+
+    teste(){
+        console.log("teste na classe conta");
     }
 }

@@ -1,57 +1,21 @@
-import {Cliente} from "./Cliente.js";
+import {Conta} from "./Conta.js";
 
-export class ContaCorrente {
+export class ContaCorrente extends Conta{
     static  numeroDeContas = 0;
 
-    set cliente(novoCliente) {
-        if(novoCliente instanceof Cliente){
-            this._cliente = novoCliente;
-        }
-    }
-
-    get cliente(){
-        return this._cliente;
-    }
-
-    get saldo(){
-        return this._saldo;
-    }
-
     constructor(novoCliente, novaAgencia) {
-        this.cliente = novoCliente;
-        this.agencia = novaAgencia;
-        this._saldo = 0;
+        super(0,novoCliente,novaAgencia );
         ContaCorrente.numeroDeContas += 1;
+    }
 
+    teste(){
+        super.teste();
+        console.log("teste na classe conta corrente");
     }
 
     sacar(valor) {
-        console.log("Sacando", valor, "reais ... ")
-        if (this._saldo >= valor) {
-            this._saldo -= valor;
-            console.log("Saque realizado com sucesso");
-            console.log("Saldo = R$", this._saldo, "\n");
-            return valor;
-        } else {
-            console.log("Saldo em conta insuficiente para o saque\n");
-        }
+        let taxa = 1.1;
+        return super._sacar(valor,taxa);
     }
 
-    depositar(valor) {
-        console.log("Depositando", valor, "reais ... ")
-        if (valor <= 0) {
-            return
-        } else {
-            this._saldo += valor;
-            console.log("Depósito realizado com sucesso");
-            console.log("Saldo = R$", this._saldo, "\n");
-        }
-    }
-
-    transferir(valor,contaDestino){
-        console.log("Transferindo ",valor, 'de' , this, 'para',contaDestino )
-        const valorSacado = this.sacar(valor);
-        contaDestino.depositar(valorSacado);
-        console.log("Transferência efetuada com sucesso");
-    }
 }
